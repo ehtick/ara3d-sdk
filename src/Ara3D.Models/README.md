@@ -33,7 +33,7 @@ Part of the [Ara3D.SDK](https://www.nuget.org/packages/Ara3D.SDK) meta-package.
 ## Related projects
 
 - [Ara3D.Studio.API](../Ara3D.Studio.API) — host application and asset interfaces
-- [Ara3D.BimOpenSchema](../Ara3D.BimOpenSchema) — BIM data attached to models
+- [Ara3D.BimOpenSchema](https://github.com/ara3d/bim-open-schema) — BIM data attached to models (separate repository)
 
 ## License
 

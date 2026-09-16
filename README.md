@@ -26,8 +26,9 @@ This SDK gives you:
 
 - **Geometry** — triangle/quad meshes, topology, spatial queries, signed distance fields,
   voxels, and common mesh algorithms (`Ara3D.Geometry`, `Ara3D.Models`).
-- **BIM tabular data** — the BIM Open Schema object model and Parquet/DuckDB/Excel I/O
-  (`Ara3D.BimOpenSchema`, `Ara3D.BimOpenSchema.IO`).
+- **BIM tabular data** — consumed from the [bim-open-schema](https://github.com/ara3d/bim-open-schema)
+  repository's packages (`Ara3D.BimOpenSchema`, `Ara3D.BimOpenSchema.IO`); the IFC → BOS
+  converter lives here.
 - **AEC file formats** — VIM, G3D/BFAST, PLY, STEP tokenization, GeoJSON/IMDF, glTF export,
   and IFC → BOS conversion on Windows (`Ara3D.IO.*`, `Ara3D.IfcLoader`).
 - **Studio scripting contracts** — generators, modifiers, tools, and the evaluation pipeline
@@ -143,7 +144,7 @@ From a clone, `build.bat` followed by `test.bat geometry fast` should pass.
 **Demonstrated (automated):**
 
 - Supported unit/regression areas via `test.bat` / `test.bat fast` —
-  `Ara3D.SDK.Tests`, `Ara3D.SDK.GeometryTests`, `Ara3D.BimOpenSchema.Tests`, and related
+  `Ara3D.SDK.Tests`, `Ara3D.SDK.GeometryTests`, and related
   projects under [`tests/`](tests/) (exact counts change; GeometryTests alone had on the
   order of 50+ `[Test]` methods when sampled 2026-07-29).
 - NuGet restore smoke tests (`test.bat nuget` after `pack.bat`) — see
@@ -223,7 +224,8 @@ Ara3D.SDK  (net8.0-windows)
 
 **Ara3D.SDK.IO** — `Ara3D.IO.BFAST`, `Ara3D.IO.G3D`, `Ara3D.IO.GeoJson`,
 `Ara3D.IO.GltfExporter`, `Ara3D.IO.PLY`, `Ara3D.IO.SharpGLTF`, `Ara3D.IO.StepParser`,
-`Ara3D.IO.VIM`, `Ara3D.BimOpenSchema`, `Ara3D.BimOpenSchema.IO`, `Ara3D.IfcLoader`.
+`Ara3D.IO.VIM`, `Ara3D.IfcLoader`, plus the external `Ara3D.BimOpenSchema` and
+`Ara3D.BimOpenSchema.IO` packages from the bim-open-schema repository.
 
 External NuGet dependencies are rare outside Roslyn helpers, glTF JSON, and BOS I/O
 (ClosedXML, DuckDB, Parquet). Details: [`docs/PACKAGES.md`](docs/PACKAGES.md).

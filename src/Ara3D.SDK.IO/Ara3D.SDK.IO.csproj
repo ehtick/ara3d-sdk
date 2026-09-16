@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ara3D.BimOpenSchema\Ara3D.BimOpenSchema.csproj" />
-    <ProjectReference Include="..\Ara3D.BimOpenSchema.IO\Ara3D.BimOpenSchema.IO.csproj" />
+    <PackageReference Include="Ara3D.BimOpenSchema" Version="$(Ara3DBimOpenSchemaVersion)" />
+    <PackageReference Include="Ara3D.BimOpenSchema.IO" Version="$(Ara3DBimOpenSchemaVersion)" />
     <ProjectReference Include="..\Ara3D.IO.BFAST\Ara3D.IO.BFAST.csproj" />
     <ProjectReference Include="..\Ara3D.IO.G3D\Ara3D.IO.G3D.csproj" />
     <ProjectReference Include="..\Ara3D.IO.GeoJson\Ara3D.IO.GeoJson.csproj" />

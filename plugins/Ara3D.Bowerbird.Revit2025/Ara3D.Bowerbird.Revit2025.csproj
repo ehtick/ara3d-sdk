@@ -47,9 +47,9 @@
 	</ItemGroup>	
 	<ItemGroup>
 	  <ProjectReference Include="..\..\examples\Ara3D.Studio.Examples\Ara3D.Studio.Samples.csproj" />
-	  <ProjectReference Include="..\..\src\Ara3D.BimOpenSchema\Ara3D.BimOpenSchema.csproj" />
+	  <PackageReference Include="Ara3D.BimOpenSchema" Version="$(Ara3DBimOpenSchemaVersion)" />
 	  <ProjectReference Include="..\..\src\Ara3D.IO.PLY\Ara3D.IO.PLY.csproj" />
-	  <ProjectReference Include="..\..\src\Ara3D.BimOpenSchema.IO\Ara3D.BimOpenSchema.IO.csproj" />
+	  <PackageReference Include="Ara3D.BimOpenSchema.IO" Version="$(Ara3DBimOpenSchemaVersion)" />
 	  <ProjectReference Include="..\Ara3D.Bowerbird.Demo\Ara3D.Bowerbird.Demo.csproj" />
 	  <ProjectReference Include="..\Ara3D.Bowerbird\Ara3D.Bowerbird.csproj" />
 	</ItemGroup>

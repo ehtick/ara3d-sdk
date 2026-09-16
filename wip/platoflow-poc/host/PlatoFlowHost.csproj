@@ -21,7 +21,7 @@
   <ItemGroup>
     <!-- Referenced, never edited. IfcLoader carries the native web-ifc DLL to our output. -->
     <ProjectReference Include="..\..\..\src\Ara3D.Utils\Ara3D.Utils.csproj" />
-    <ProjectReference Include="..\..\..\src\Ara3D.BimOpenSchema.IO\Ara3D.BimOpenSchema.IO.csproj" />
+    <PackageReference Include="Ara3D.BimOpenSchema.IO" Version="$(Ara3DBimOpenSchemaVersion)" />
     <ProjectReference Include="..\..\..\ext\Ara3D.IfcLoader\Ara3D.IfcLoader.csproj" />
   </ItemGroup>
 

@@ -13,7 +13,6 @@ echo Building supported SDK packages (%CONFIG%) ...
 dotnet build "%ROOT%src\Ara3D.SDK\Ara3D.SDK.csproj" -c %CONFIG% -m
 if errorlevel 1 exit /b %ERRORLEVEL%
 
-dotnet build "%ROOT%src\Ara3D.BimOpenSchema.IO\Ara3D.BimOpenSchema.IO.csproj" -c %CONFIG% -m
 if errorlevel 1 exit /b %ERRORLEVEL%
 
 echo.

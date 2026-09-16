@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Ara3D.BimOpenSchema\Ara3D.BimOpenSchema.csproj" />
+    <PackageReference Include="Ara3D.BimOpenSchema" Version="$(Ara3DBimOpenSchemaVersion)" />
     <ProjectReference Include="..\..\src\Ara3D.IO.StepParser\Ara3D.IO.StepParser.csproj" />
     <ProjectReference Include="..\..\src\Ara3D.Models\Ara3D.Models.csproj" />
   </ItemGroup>

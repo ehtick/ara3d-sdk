@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Ara3D.BimOpenSchema\Ara3D.BimOpenSchema.csproj" />
+    <PackageReference Include="Ara3D.BimOpenSchema" Version="$(Ara3DBimOpenSchemaVersion)" />
     <ProjectReference Include="..\..\src\Ara3D.IO.GeoJson\Ara3D.IO.GeoJson.csproj" />
     <ProjectReference Include="..\..\src\Ara3D.Geometry\Ara3D.Geometry.csproj" />
     <ProjectReference Include="..\..\src\Ara3D.Models\Ara3D.Models.csproj" />

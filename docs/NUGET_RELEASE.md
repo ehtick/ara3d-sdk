@@ -34,7 +34,7 @@ Set environment variables (or rely on defaults in `publish-nuget.bat` on your ma
 - `NUGET_EXE`
 - `NUGET_API_KEY_FILE` — first line is the API key; never commit this file
 
-Review per-project `<Version>` overrides (e.g. `src\Ara3D.BimOpenSchema.IO`) before publishing.
+Review per-project `<Version>` overrides before publishing.
 
 Meta-packages: `Ara3D.SDK` (full Windows stack), `Ara3D.SDK.Core`, `Ara3D.SDK.Geometry`,
 `Ara3D.SDK.IO`. See [`src/README.md`](../src/README.md).

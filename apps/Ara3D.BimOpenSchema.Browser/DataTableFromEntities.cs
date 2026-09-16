@@ -4,7 +4,9 @@ using System.Linq;
 using Ara3D.DataTable;
 using Ara3D.Utils;
 
-namespace Ara3D.BimOpenSchema;
+using Ara3D.BimOpenSchema;
+
+namespace Ara3D.BimOpenSchema.Browser;
 
 public class DataTableFromEntities : IDataTable
 {

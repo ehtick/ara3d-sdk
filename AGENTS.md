@@ -215,7 +215,6 @@ default areas map to:
 | --- | --- | --- |
 | `sdk` | `Ara3D.SDK.Tests` | `Ara3D.IO.VIM`, `Ara3D.IO.BFAST`, `Ara3D.Utils`, `Ara3D.Logging`, `Ara3D.PropKit` |
 | `geometry` | `Ara3D.SDK.GeometryTests` | `Ara3D.Geometry`, `Ara3D.IO.PLY` |
-| `bim` | `Ara3D.BimOpenSchema.Tests` | `Ara3D.BimOpenSchema`, `Ara3D.BimOpenSchema.IO`, glTF |
 | `devtools` | `Ara3D.SDK.DevTools` | Roslyn / `Microsoft.CodeAnalysis` helpers |
 | `nuget` | `Ara3D.SDK.NuGet.Tests` | Packed `.nupkg` restore from `artifacts/` (run after `pack.bat`) |
 | `ifcmesher` | `Ara3D.IfcMeshingComparison` | Approach1 IFC mesher + geometry oracles (wip) |

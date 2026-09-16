@@ -64,7 +64,6 @@ if /I "%AREA%"=="fast" (
 set PROJ=
 if /I "%AREA%"=="sdk"      set PROJ=tests\Ara3D.SDK.Tests\Ara3D.SDK.Tests.csproj
 if /I "%AREA%"=="geometry" set PROJ=tests\Ara3D.SDK.GeometryTests\Ara3D.SDK.GeometryTests.csproj
-if /I "%AREA%"=="bim"      set PROJ=tests\Ara3D.BimOpenSchema.Tests\Ara3D.BimOpenSchema.Tests.csproj
 if /I "%AREA%"=="devtools" set PROJ=tests\Ara3D.SDK.DevTools\Ara3D.SDK.DevTools.csproj
 if /I "%AREA%"=="bowerbird" set PROJ=tests\Ara3D.Bowerbird.Tests\Ara3D.Bowerbird.Tests.csproj
 if /I "%AREA%"=="domo"      set PROJ=tests\Ara3D.Domo.Tests\Ara3D.Domo.Tests.csproj
@@ -86,7 +85,6 @@ if /I "%AREA%"=="all" (
   if errorlevel 1 exit /b %ERRORLEVEL%
   call :RunProject "tests\Ara3D.SDK.GeometryTests\Ara3D.SDK.GeometryTests.csproj"
   if errorlevel 1 exit /b %ERRORLEVEL%
-  call :RunProject "tests\Ara3D.BimOpenSchema.Tests\Ara3D.BimOpenSchema.Tests.csproj"
   if errorlevel 1 exit /b %ERRORLEVEL%
   call :RunProject "tests\Ara3D.SDK.DevTools\Ara3D.SDK.DevTools.csproj"
   if errorlevel 1 exit /b %ERRORLEVEL%

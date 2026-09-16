@@ -38,7 +38,7 @@ if errorlevel 1 exit /b %ERRORLEVEL%
 
 echo.
 echo Updated Directory.Build.props
-echo Review per-project overrides such as ext\Ara3D.BimOpenSchema.IO before publishing.
+echo Review per-project overrides before publishing.
 exit /b 0
 
 :BumpPatch

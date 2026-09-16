@@ -105,7 +105,7 @@ flowchart BT
     GeoJson --> Utils
   end
 
-  subgraph bim ["BIM Open Schema"]
+  subgraph bim ["BIM Open Schema (packages from the bim-open-schema repository)"]
     BOS["BimOpenSchema"] --> DataTable
     BOS --> Geometry
     BOS --> Models

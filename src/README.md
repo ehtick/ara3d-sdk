@@ -58,8 +58,6 @@ Shared math types used by Geometry are generated in [`Plato.Generated`](Plato.Ge
 
 | Project | Description |
 | --- | --- |
-| [Ara3D.BimOpenSchema](Ara3D.BimOpenSchema) | BIM Open Schema object model |
-| [Ara3D.BimOpenSchema.IO](Ara3D.BimOpenSchema.IO) | Parquet/DuckDB/Excel serialization and IFC import (Windows TFM for IFC) |
 
 ---
 
