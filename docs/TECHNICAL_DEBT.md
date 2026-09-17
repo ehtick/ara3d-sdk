@@ -31,7 +31,7 @@ group, roughly highest-impact first.
 | `src/Ara3D.Geometry/TransformableExtensions.cs` | `AxisAngle` / `Rotate(AxisAngle)` path flagged "might be broken" (the matrix-based `RotateX/Y/Z` look fine) | Any transform chain that goes through `AxisAngle` may be wrong; needs a test to confirm or fix |
 | `src/Ara3D.IO.GltfExporter/GltfBuilder.cs` | Assumes all instances sharing a mesh share one material | Drops material variation on instanced meshes in glTF output (worked-around glTF limitation, but currently lossy) |
 | `src/Ara3D.IO.PLY/PlyImporter.cs` | `ToMesh` reads positions only; normals / colors / UV are dropped | Colored or textured PLY files lose data silently |
-| `src/Ara3D.BimOpenSchema/BimObjectModelExtensions.cs` | `GetDistinctLevels` dedups with a hard-coded `0.001` elevation epsilon | Can mis-classify nearly-coincident floors or split true duplicates |
+| `bim-open-toolkit: src/Ara3D.BimOpenSchema.ObjectModel/BimObjectModelExtensions.cs` | `GetDistinctLevels` dedups with a hard-coded `0.001` elevation epsilon | Can mis-classify nearly-coincident floors or split true duplicates |
 | `src/Ara3D.Utils/ZipUtil.cs` | `CreateEntryFromText` reported to produce sporadic zip-creation failures (author note) | Unreliable archive writes; needs reproduction + a test before relying on it |
 | `src/Ara3D.IO.BFAST/BFast.cs` | `CheckAlignment` returns early when `stream.Position == stream.Length` (open question: bail vs skip) | Alignment checks on actively-writing streams are silently skipped |
 | `src/Ara3D.Geometry/IsotropicRemesher.cs` | Face-key dedup and half-edge helper incomplete (`GetUndirectedFaceKey` should move to topology) | Vertex-collapse remeshing may miss duplicate faces or mishandle shared topology |
@@ -43,8 +43,8 @@ group, roughly highest-impact first.
 | `src/Ara3D.Geometry/GeometryUtil.cs` | ~1,360-line catch-all for vectors, transforms, mesh helpers, tolerances | Hard to navigate/refactor; many functions belong in dedicated math/topology modules (inline `// TODO:` at line 19) |
 | `wip/Ara3D.Domo/Repository.cs` | `SetModelValues` updates one-by-one — no bulk notification, no rollback, no functional update | Slow and non-atomic bulk edits; partial failure leaves the repository inconsistent |
 | `wip/Ara3D.Domo/Model.cs` | `SetPropertyValue` writes read-only auto-props via the `<name>k__BackingField` reflection trick | Relies on an undocumented compiler naming convention; brittle and slow |
-| `src/Ara3D.BimOpenSchema/BimGeometryExtensions.cs` | `ToBimGeometry` copies columns through `IDataSet` helpers instead of reading Parquet columns directly | Extra allocations and indirection on large BIM geometry loads |
-| `src/Ara3D.BimOpenSchema/BimDataBuilder.cs` | `Geometry` is a mutable property on the general builder, not a dedicated `BimGeometryBuilder` | Awkward API; easy to misuse when building BOS documents |
+| `bim-open-toolkit: src/Ara3D.BimOpenSchema.ObjectModel/BimGeometryExtensions.cs` | `ToBimGeometry` copies columns through `IDataSet` helpers instead of reading Parquet columns directly | Extra allocations and indirection on large BIM geometry loads |
+| `bim-open-toolkit: src/Ara3D.BimOpenSchema.ObjectModel/BimDataBuilder.cs` | `Geometry` is a mutable property on the general builder, not a dedicated `BimGeometryBuilder` | Awkward API; easy to misuse when building BOS documents |
 | `src/Ara3D.Models/Model3DExtensions.cs` | Only a colored-mesh path; no separate non-colored fast path; copies buffers instead of reusing them; some helpers may belong in geometry extensions | Unnecessary work and allocations when building render models from large meshes |
 | `src/Ara3D.Logging/ILogger.cs` | `Create(category)` defaults to `DebugWriter` instead of inheriting the parent logger's writer | Child loggers lose custom writers; hard to route logs consistently in pipelines |
 | `src/Ara3D.Utils/PathUtil.cs` | Mixed string and `FilePath`/`DirectoryPath` API (class-level note to finish the migration) | Easy to misuse paths at call sites; inconsistent conventions across the SDK |
@@ -61,10 +61,10 @@ group, roughly highest-impact first.
 | `src/Ara3D.IO.StepParser/StepGraph.cs`, `src/Ara3D.PropKit/PropAccessor.cs` | Whole types commented out with "delete" TODOs | Dead-code noise; decide to delete or restore |
 | `src/Ara3D.Geometry/MeshFeatures_Helpers.cs` | ~12-point future-features roadmap (caching, units, BIM heuristics, …) embedded in a comment block | Not a shortcut — a plan living in source; move to an issue/this log or trim, so it's tracked rather than buried |
 | `deprecated/` | Former `Ara3D.Geometry`, PropKit WIP, graphics experiments — not built | Repo clutter; risk of copying stale patterns back into active code |
-| `ext/Ara3D.IfcLoader/IfcEntityResolver.cs` | Creates an `IfcEntity` for every STEP entity without filtering | Memory and parse cost on large IFC files |
-| `plugins/Ara3D.BIMOpenSchema.Revit2025/` | Hard-coded to Revit 2025 | Each Revit year needs a sibling project or a version-abstraction layer |
-| `src/Ara3D.BimOpenSchema.IO/BosBfastSerializer.cs` | Serializer helpers sit in the IO project with a "move this somewhere" note | Blurs the line between the core BOS model and serialization utilities |
-| `tests/Ara3D.BimOpenSchema.Tests/GltfMaterialFactory.cs` | glTF → `Models.Material` conversion lives in test code with a "move to models" note | Duplicated or lost if tests change; belongs in production code if the mapping is real |
+| `bim-open-toolkit: src/Ara3D.IfcLoader/IfcEntityResolver.cs` | Creates an `IfcEntity` for every STEP entity without filtering | Memory and parse cost on large IFC files |
+| `bim-open-toolkit: plugins/Ara3D.BIMOpenSchema.Revit2025/` | Hard-coded to Revit 2025 | Each Revit year needs a sibling project or a version-abstraction layer |
+| `bim-open-toolkit: src/Ara3D.BimOpenSchema.IO/BosBfastSerializer.cs` | Serializer helpers sit in the IO project with a "move this somewhere" note | Blurs the line between the core BOS model and serialization utilities |
+| `bim-open-toolkit: tests/Ara3D.BimOpenSchema.Tests/GltfMaterialFactory.cs` | glTF → `Models.Material` conversion lives in test code with a "move to models" note | Duplicated or lost if tests change; belongs in production code if the mapping is real |
 
 ---
 

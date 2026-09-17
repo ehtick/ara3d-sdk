@@ -76,28 +76,28 @@ None currently. (IFC-relations refactor landed — see Resolved.)
 - [ ] **5. [M] Presentation swap may leave stale attributes** — `src/Ara3D.Studio.API/FlowObject.cs` line 28.
 - [ ] **6. [M] glTF exporter drops per-instance materials** — `src/Ara3D.IO.GltfExporter/GltfBuilder.cs` line 122.
 - [ ] **7. [M] PLY import drops normals / colors / UV** — `src/Ara3D.IO.PLY/PlyImporter.cs` line 296.
-- [ ] **8. [S] `GetDistinctLevels` elevation epsilon hack** — `src/Ara3D.BimOpenSchema/BimObjectModelExtensions.cs` line 21 (`0.001` hard-coded).
+- [ ] **8. [S] `GetDistinctLevels` elevation epsilon hack** — `bim-open-toolkit: src/Ara3D.BimOpenSchema.ObjectModel/BimObjectModelExtensions.cs` line 21 (`0.001` hard-coded).
 - [ ] **9. [M] `ZipUtil.CreateEntryFromText` sporadic failures** — `src/Ara3D.Utils/ZipUtil.cs` line 87; needs repro test before fix.
 - [ ] **10. [S] `BFast.CheckAlignment` skips at stream end** — `src/Ara3D.IO.BFAST/BFast.cs` line 69; open question: bail vs skip.
 - [ ] **11. [L] Isotropic remesher topology incomplete** — `src/Ara3D.Geometry/IsotropicRemesher.cs` lines 280–304.
-- [ ] **12. [M] Revit geometry computation doubt** — `plugins/Ara3D.Bowerbird.RevitSamples/ExtensionsRevit.cs` line 259.
+- [ ] **12. [M] Revit geometry computation doubt** — `bim-open-toolkit: plugins/Ara3D.Bowerbird.RevitSamples/ExtensionsRevit.cs` line 259.
 - [ ] **13. [L] Known-issue triangulation bugs** — `tests/Ara3D.SDK.KnownIssues.Tests/PolygonTriangulatorKnownIssueTests.cs` (opt-in via `test.bat knownissues`).
 
 ---
 
 ## P2 — Performance and scale
 
-- [ ] **17. [M] `IfcEntityResolver` creates `IfcEntity` for every STEP entity** — `ext/Ara3D.IfcLoader/IfcEntityResolver.cs` line 14.
-- [ ] **18. [M] `ToBimGeometry` copies via `IDataSet` instead of Parquet columns** — `src/Ara3D.BimOpenSchema/BimGeometryExtensions.cs` line 252.
+- [ ] **17. [M] `IfcEntityResolver` creates `IfcEntity` for every STEP entity** — `bim-open-toolkit: src/Ara3D.IfcLoader/IfcEntityResolver.cs` line 14.
+- [ ] **18. [M] `ToBimGeometry` copies via `IDataSet` instead of Parquet columns** — `bim-open-toolkit: src/Ara3D.BimOpenSchema.ObjectModel/BimGeometryExtensions.cs` line 252.
 - [ ] **19. [M] `Model3DExtensions` buffer copies, no non-colored fast path** — `src/Ara3D.Models/Model3DExtensions.cs` lines 25, 69, 292.
-- [ ] **20. [M] Revit AST geometry path optimization** — `plugins/Ara3D.Bowerbird.RevitSamples/GeometryAbstractSyntaxTree.cs` line 99.
+- [ ] **20. [M] Revit AST geometry path optimization** — `bim-open-toolkit: plugins/Ara3D.Bowerbird.RevitSamples/GeometryAbstractSyntaxTree.cs` line 99.
 
 ---
 
 ## P3 — Architecture and API shape
 
 - [ ] **21. [XL] Split `GeometryUtil.cs` (~1,360 lines)** — `src/Ara3D.Geometry/GeometryUtil.cs` line 19.
-- [ ] **22. [M] `BimDataBuilder.Geometry` should be `BimGeometryBuilder`** — `src/Ara3D.BimOpenSchema/BimDataBuilder.cs` line 66.
+- [ ] **22. [M] `BimDataBuilder.Geometry` should be `BimGeometryBuilder`** — `bim-open-toolkit: src/Ara3D.BimOpenSchema.ObjectModel/BimDataBuilder.cs` line 66.
 - [ ] **23. [L] Domo bulk update API** — `wip/Ara3D.Domo/Repository.cs` lines 166–168.
 - [ ] **24. [M] Domo `SetPropertyValue` reflection on backing fields** — `wip/Ara3D.Domo/Model.cs`.
 - [ ] **25. [S] `ILogger.Create` should inherit parent writer** — `src/Ara3D.Logging/ILogger.cs` line 56.
@@ -106,7 +106,7 @@ None currently. (IFC-relations refactor landed — see Resolved.)
 - [ ] **28. [XL] Vendored SharpGLTF fork maintenance** — scattered TODOs under `src/Ara3D.IO.SharpGLTF/`.
 - [ ] **29. [S] `ProfilingUtil` direct `Console` references** — `src/Ara3D.Utils/ProfilingUtil.cs` line 81.
 - [ ] **30. [M] PropKit vector descriptor generalization** — `src/Ara3D.PropKit/PropDescriptorVector3.cs` line 30.
-- [ ] **31. [S] BOS Browser Family vs Type naming confusion** — `apps/Ara3D.BimOpenSchema.Browser/MainWindow.xaml.cs` line 161.
+- [ ] **31. [S] BOS Browser Family vs Type naming confusion** — `bim-open-toolkit: apps/Ara3D.BimOpenSchema.Browser/MainWindow.xaml.cs` line 161.
 
 ---
 
@@ -117,10 +117,10 @@ None currently. (IFC-relations refactor landed — see Resolved.)
 - [ ] **36. [XS] Delete or restore dead types** — `src/Ara3D.IO.StepParser/StepGraph.cs`, `src/Ara3D.PropKit/PropAccessor.cs`.
 - [ ] **37. [XS] Move `MeshFeatures_Helpers` roadmap comment into debt log** — `src/Ara3D.Geometry/MeshFeatures_Helpers.cs`.
 - [ ] **38. [M] Prune or archive `deprecated/`**.
-- [ ] **39. [XL] Revit 2025 hard-coding / multi-version path** — `plugins/Ara3D.Bowerbird.Revit2025/BowerbirdRevitApp.cs` line 59.
-- [ ] **40. [S] Promote `GltfMaterialFactory` from tests** — `tests/Ara3D.BimOpenSchema.Tests/GltfMaterialFactory.cs` line 80.
+- [ ] **39. [XL] Revit 2025 hard-coding / multi-version path** — `bim-open-toolkit: plugins/Ara3D.Bowerbird.Revit2025/BowerbirdRevitApp.cs` line 59.
+- [ ] **40. [S] Promote `GltfMaterialFactory` from tests** — `bim-open-toolkit: tests/Ara3D.BimOpenSchema.Tests/GltfMaterialFactory.cs` line 80.
 - [ ] **41. [S] Minor WPF utility moves** — `ext/Ara3D.Utils.Wpf/ObservablePair.cs`, `WpfHelpers.cs`.
-- [ ] **42. [M] Layout importer two-door path limit** — `plugins/Ara3D.Bowerbird.RevitSamples/BowerbirdLayoutImporter.cs` line 335.
+- [ ] **42. [M] Layout importer two-door path limit** — `bim-open-toolkit: plugins/Ara3D.Bowerbird.RevitSamples/BowerbirdLayoutImporter.cs` line 335.
 
 ---
 

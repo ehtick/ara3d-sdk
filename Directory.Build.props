@@ -17,7 +17,6 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Central NuGet dependency versions">
-    <Ara3DBimOpenSchemaVersion>1.6.1</Ara3DBimOpenSchemaVersion>
     <Ara3DClosedXmlVersion>0.105.0</Ara3DClosedXmlVersion>
     <Ara3DCoverletCollectorVersion>6.0.0</Ara3DCoverletCollectorVersion>
     <Ara3DDuckDbNetDataFullVersion>1.3.2</Ara3DDuckDbNetDataFullVersion>
@@ -30,7 +29,6 @@
     <Ara3DNUnitVersion>3.14.0</Ara3DNUnitVersion>
     <Ara3DNUnit3TestAdapterVersion>4.5.0</Ara3DNUnit3TestAdapterVersion>
     <Ara3DParquetNetVersion>5.2.0</Ara3DParquetNetVersion>
-    <Ara3DRevitAllMainVersionsApiX64Version>2025.0.0</Ara3DRevitAllMainVersionsApiX64Version>
     <Ara3DSystemComponentModelAnnotationsVersion>5.0.0</Ara3DSystemComponentModelAnnotationsVersion>
     <Ara3DSystemDrawingCommonVersion>8.0.6</Ara3DSystemDrawingCommonVersion>
     <Ara3DSystemIoPipesVersion>4.3.0</Ara3DSystemIoPipesVersion>

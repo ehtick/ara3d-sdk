@@ -4,8 +4,8 @@ Packages build to `artifacts/` (gitignored). Version is `Ara3DVersion` in `Direc
 `pack.bat` builds and packs every project listed in `build/packages.txt` via parallel MSBuild
 (`build/PackAll.proj`). Use `pack.bat Release nobuild` when projects are already built.
 
-**Pack scope:** `src/` and `ext/` only. Everything under `toolchain/` (Parakeet, Plato,
-IfcTypeGen, …) has `IsPackable=false` and must not appear in `packages.txt`. Same for
+**Pack scope:** `src/` and `ext/` only. Everything under `toolchain/` has
+`IsPackable=false` and must not appear in `packages.txt`. Same for
 `plugins/`, `apps/`, `integrations/`, `tests/`, and `wip/`.
 
 ## Release commands

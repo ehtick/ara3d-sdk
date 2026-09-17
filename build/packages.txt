@@ -2,10 +2,8 @@
 # This is the source of truth for pack.bat and release.bat.
 #
 # Allowed: src/ and ext/ library projects only.
-# Excluded (never add here): toolchain/ (Parakeet, Plato, IfcTypeGen, …),
+# Excluded (never add here): toolchain/,
 # plugins/, apps/, integrations/, tests/, examples/, wip/.
-src\Ara3D.BimOpenSchema\Ara3D.BimOpenSchema.csproj
-src\Ara3D.BimOpenSchema.IO\Ara3D.BimOpenSchema.IO.csproj
 src\Ara3D.Collections\Ara3D.Collections.csproj
 src\Ara3D.DataTable\Ara3D.DataTable.csproj
 src\Ara3D.Events\Ara3D.Events.csproj
@@ -27,7 +25,6 @@ src\Ara3D.Studio.API\Ara3D.Studio.API.csproj
 src\Ara3D.Utils\Ara3D.Utils.csproj
 src\Ara3D.Utils.Roslyn\Ara3D.Utils.Roslyn.csproj
 src\Ara3D.WorkItems\Ara3D.WorkItems.csproj
-ext\Ara3D.IfcLoader\Ara3D.IfcLoader.csproj
 ext\Ara3D.Utils.Wpf\Ara3D.Utils.Wpf.csproj
 src\Ara3D.SDK.Core\Ara3D.SDK.Core.csproj
 src\Ara3D.SDK.Geometry\Ara3D.SDK.Geometry.csproj

@@ -26,11 +26,8 @@ This SDK gives you:
 
 - **Geometry** — triangle/quad meshes, topology, spatial queries, signed distance fields,
   voxels, and common mesh algorithms (`Ara3D.Geometry`, `Ara3D.Models`).
-- **BIM tabular data** — consumed from the [bim-open-schema](https://github.com/ara3d/bim-open-schema)
-  repository's packages (`Ara3D.BimOpenSchema`, `Ara3D.BimOpenSchema.IO`); the IFC → BOS
-  converter lives here.
-- **AEC file formats** — VIM, G3D/BFAST, PLY, STEP tokenization, GeoJSON/IMDF, glTF export,
-  and IFC → BOS conversion on Windows (`Ara3D.IO.*`, `Ara3D.IfcLoader`).
+- **AEC file formats** — VIM, G3D/BFAST, PLY, STEP tokenization, GeoJSON/IMDF, and glTF
+  export (`Ara3D.IO.*`).
 - **Studio scripting contracts** — generators, modifiers, tools, and the evaluation pipeline
   types used by Ara 3D Studio plug-ins (`Ara3D.Studio.API`, with host-free evaluation types
   in `Ara3D.Flow` in source).
@@ -48,15 +45,15 @@ You can install a meta-package from NuGet, or reference individual projects unde
   this repository is the library layer underneath it (and usable without it).
 - It is **not a real-time renderer or game engine**. Models and buffers exist so hosts can
   draw them; there is no OpenGL/Vulkan/Direct3D engine here.
-- It is **not a complete IFC platform**. Windows IFC import goes through a native
-  `web-ifc` DLL (`Ara3D.IfcLoader`). A pure-C# IFC mesher lives under [`wip/`](wip/) and is
-  experimental. Round-trip IFC write, full schema validation, and multi-platform IFC
-  conversion are out of scope for the published packages.
+- It is **not a BIM or IFC library**. The BIM Open Schema specification lives in
+  [bim-open-schema](https://github.com/ara3d/bim-open-schema); its reference implementation,
+  the IFC loader and mesher, the Revit add-ins, and the BOS Browser live in
+  [bim-open-toolkit](https://github.com/ara3d/bim-open-toolkit), which consumes this SDK.
 - It is **not a general-purpose math library**. Vector/matrix/mesh math types come from
   Plato-generated code compiled into `Ara3D.Geometry`; the focus is geometry and AEC data,
   not arbitrary numerical computing.
-- **Plug-ins, apps, and WIP projects are not on NuGet.** Revit/Bowerbird add-ins,
-  the BOS Browser app, Assimp integration, and `wip/` experiments stay in this repo only.
+- **Plug-ins and WIP projects are not on NuGet.** The Bowerbird plug-in host, Assimp
+  integration, and `wip/` experiments stay in this repo only.
 
 ---
 
@@ -97,12 +94,12 @@ dotnet add package Ara3D.SDK.Geometry
 | --- | --- | --- |
 | [`Ara3D.SDK.Core`](https://www.nuget.org/packages/Ara3D.SDK.Core) | `net8.0` | Utilities, memory, logging, collections — no geometry |
 | [`Ara3D.SDK.Geometry`](https://www.nuget.org/packages/Ara3D.SDK.Geometry) | `net8.0` | Meshes, models, SIMD helpers |
-| [`Ara3D.SDK.IO`](https://www.nuget.org/packages/Ara3D.SDK.IO) | `net8.0-windows` | File formats + BOS + IFC conversion |
+| [`Ara3D.SDK.IO`](https://www.nuget.org/packages/Ara3D.SDK.IO) | `net8.0-windows` | File formats |
 | [`Ara3D.SDK`](https://www.nuget.org/packages/Ara3D.SDK) | `net8.0-windows` | Full stack: Core + Geometry + IO + Studio API + WPF |
 
 Most individual libraries under `src/` and `ext/` are also published at the same version.
 Most format readers (`Ara3D.IO.PLY`, `Ara3D.IO.VIM`, `Ara3D.IO.BFAST`, …) target `net8.0`
-on their own; the **IO meta-package** is Windows-only because it includes `Ara3D.IfcLoader`.
+on their own; the **IO meta-package** keeps its `net8.0-windows` target for compatibility.
 
 ### Build from source
 
@@ -157,9 +154,7 @@ From a clone, `build.bat` followed by `test.bat geometry fast` should pass.
 - Documented broken or unfinished behavior lives in `tests/Ara3D.SDK.KnownIssues.Tests`
   (`test.bat knownissues`) and in [`docs/TECHNICAL_DEBT.md`](docs/TECHNICAL_DEBT.md)
   (for example unfinished `FlowObject.Transform`, lossy PLY attribute import).
-- IFC meshing parity and pure-C# meshing work under [`wip/Ara3D.Ifc.Mesher`](wip/) and
-  `tests/Ara3D.IfcMeshingComparison` are **not** part of the default `test.bat` gate.
-- [`wip/`](wip/), [`plugins/`](plugins/), and [`apps/`](apps/) are not release-quality
+- [`wip/`](wip/) and [`plugins/`](plugins/) are not release-quality
   SDK surface; treat them as product-specific or experimental.
 - `Ara3D.Flow` (host-free evaluation pipeline) exists in source and is referenced by
   `Ara3D.Studio.API`, but it is **not** listed in [`build/packages.txt`](build/packages.txt)
@@ -187,15 +182,14 @@ Comparisons below describe intent; package versions and feature sets change over
 | Path | Purpose |
 | --- | --- |
 | [`src/`](src/) | Supported libraries and NuGet meta-packages — start here |
-| [`ext/`](ext/) | Windows-only extensions (IFC loader, WPF helpers) |
+| [`ext/`](ext/) | Windows-only extensions (WPF helpers) |
 | [`tests/`](tests/) | NUnit projects (`test.bat` areas) |
 | [`examples/`](examples/) | Studio scripts and workshop samples |
-| [`apps/`](apps/) | Standalone apps (e.g. BOS Browser) — not on NuGet |
-| [`plugins/`](plugins/) | Bowerbird / Revit hosts — not on NuGet |
+| [`plugins/`](plugins/) | Bowerbird plug-in host — not on NuGet |
 | [`integrations/`](integrations/) | Optional third-party adapters (Assimp) |
-| [`wip/`](wip/) | Experiments (IFC mesher, Domo, MCP, …) |
+| [`wip/`](wip/) | Experiments (Domo, Graphics, MCP) |
 | [`toolchain/`](toolchain/) | Dev tools — never NuGet-packed |
-| [`vendor/`](vendor/) | Native binaries (e.g. `web-ifc-library.dll`) |
+| [`vendor/`](vendor/) | Third-party API assemblies (3ds Max, Maya, Navisworks) |
 | [`docs/`](docs/) | Package graphs, workflows, debt log |
 | [`artifacts/`](artifacts/) | Packed `.nupkg` output (gitignored) |
 | [`deprecated/`](deprecated/) | Unmaintained projects |
@@ -224,11 +218,10 @@ Ara3D.SDK  (net8.0-windows)
 
 **Ara3D.SDK.IO** — `Ara3D.IO.BFAST`, `Ara3D.IO.G3D`, `Ara3D.IO.GeoJson`,
 `Ara3D.IO.GltfExporter`, `Ara3D.IO.PLY`, `Ara3D.IO.SharpGLTF`, `Ara3D.IO.StepParser`,
-`Ara3D.IO.VIM`, `Ara3D.IfcLoader`, plus the external `Ara3D.BimOpenSchema` and
-`Ara3D.BimOpenSchema.IO` packages from the bim-open-schema repository.
+`Ara3D.IO.VIM`.
 
-External NuGet dependencies are rare outside Roslyn helpers, glTF JSON, and BOS I/O
-(ClosedXML, DuckDB, Parquet). Details: [`docs/PACKAGES.md`](docs/PACKAGES.md).
+External NuGet dependencies are rare outside Roslyn helpers and glTF JSON.
+Details: [`docs/PACKAGES.md`](docs/PACKAGES.md).
 
 ---
 

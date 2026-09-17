@@ -1,7 +1,8 @@
 # Ara 3D Studio examples
 
 Sample **generators** (make geometry) and **modifiers** (transform geometry) for Ara 3D Studio,
-plus BIM tools, commands, and demos. Each `.cs` file is a self-contained tool: implement
+plus commands and demos. The BIM tools that read BIM Open Schema data live in
+bim-open-toolkit under `src/Ara3D.Studio.BimTools`. Each `.cs` file is a self-contained tool: implement
 `IGenerator` / `IModifier`, expose an `Eval` method, and Studio surfaces it in the UI.
 
 **New here? Start with the authoring skill:** [`../../skills/ara3d-authoring/SKILL.md`](../../skills/ara3d-authoring/SKILL.md)

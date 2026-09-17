@@ -28,8 +28,8 @@ subset in the root `.editorconfig`. Does NOT apply to generated/synced code (`Pl
 - Conformance suites live in the Plato repo (`submodules/Plato/conformance`), not here.
 
 ## Hard rules
-1. Pre-existing user work in the tree (`Ara3D.SDK.sln`, `ext/Ara3D.IfcLoader`, `wip/`,
-   `tests/Ara3D.IfcMeshingComparison`, `.gitignore` edits) — never touch or stage.
+1. Pre-existing user work in the tree (`Ara3D.SDK.sln`, `wip/`, `.gitignore` edits) — never
+   touch or stage.
 2. New test/tool projects are NOT added to the .sln.
 3. `Directory.Build.props` defines package-version variables; projects outside this repo's root
    (e.g. in the Plato repo) must pin versions explicitly.

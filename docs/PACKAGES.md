@@ -38,14 +38,14 @@ flowchart TB
 | --- | --- |
 | **Ara3D.SDK.Core** | Collections, DataTable, Events, F8, Logging, Memory, PropKit, Utils, Utils.Roslyn, WorkItems |
 | **Ara3D.SDK.Geometry** | Collections, F8, Geometry, Memory, Models, Utils |
-| **Ara3D.SDK.IO** | All I/O + BOS libraries, plus IfcLoader |
+| **Ara3D.SDK.IO** | All I/O libraries |
 | **Ara3D.SDK** | Core + Geometry + IO + Studio.API + Utils.Wpf |
 
 | Meta-package | TFM | Use when |
 | --- | --- | --- |
 | [Ara3D.SDK.Core](../src/Ara3D.SDK.Core) | `net8.0` | Minimal cross-platform foundation |
 | [Ara3D.SDK.Geometry](../src/Ara3D.SDK.Geometry) | `net8.0` | Meshes, models, SIMD math |
-| [Ara3D.SDK.IO](../src/Ara3D.SDK.IO) | `net8.0-windows` | File formats, BOS, and IFC conversion |
+| [Ara3D.SDK.IO](../src/Ara3D.SDK.IO) | `net8.0-windows` | File formats |
 | [Ara3D.SDK](../src/Ara3D.SDK) | `net8.0-windows` | Everything above plus Studio API and WPF |
 
 ## Library dependency graph
@@ -105,16 +105,6 @@ flowchart BT
     GeoJson --> Utils
   end
 
-  subgraph bim ["BIM Open Schema (packages from the bim-open-schema repository)"]
-    BOS["BimOpenSchema"] --> DataTable
-    BOS --> Geometry
-    BOS --> Models
-    IfcLoader["IfcLoader (ext/)"] --> BOS
-    IfcLoader --> StepParser
-    IfcLoader --> Models
-    BOSIO["BimOpenSchema.IO"] --> BOS
-    BOSIO --> IfcLoader
-  end
 
   subgraph studio ["Studio & WPF"]
     StudioAPI["Studio.API"] --> DataTable
@@ -134,13 +124,7 @@ flowchart LR
   UtilsRoslyn["Utils.Roslyn"] --> CodeAnalysis["Microsoft.CodeAnalysis.CSharp"]
   UtilsRoslyn --> DiaSym["Microsoft.DiaSymReader.Native"]
   GltfExporter["IO.GltfExporter"] --> Newtonsoft["Newtonsoft.Json"]
-  BOSIO["BimOpenSchema.IO"] --> ClosedXML
-  BOSIO --> DuckDB["DuckDB.NET.Data.Full"]
-  BOSIO --> Parquet["Parquet.Net"]
 ```
-
-`IfcLoader` also ships the native **`web-ifc-library.dll`** from [`vendor/`](../vendor/) (not a
-NuGet package).
 
 ## Quick reference
 
@@ -148,7 +132,7 @@ NuGet package).
 | --- | --- |
 | Minimal cross-platform foundation | `Ara3D.SDK.Core` |
 | Meshes, SIMD math, models | `Ara3D.SDK.Geometry` |
-| VIM, PLY, glTF, BOS, IFC | `Ara3D.SDK.IO` |
+| VIM, PLY, glTF, STEP | `Ara3D.SDK.IO` |
 | Studio plug-in API | `Ara3D.Studio.API` (or full `Ara3D.SDK`) |
 | WPF helpers | `Ara3D.Utils.Wpf` |
 | Just one format | Individual package, e.g. `Ara3D.IO.VIM` |
@@ -162,8 +146,7 @@ Projects under these folders set `IsPackable=false` (see `toolchain/Directory.Bu
 
 | Folder | Examples | Notes |
 | --- | --- | --- |
-| [`toolchain/`](../toolchain/) | Parakeet, Plato, IfcTypeGen | Dev/codegen tools; Parakeet is **not** packed from this repo |
-| [`plugins/`](../plugins/) | Bowerbird, Revit add-ins | Host plug-ins |
-| [`apps/`](../apps/) | BOS Browser | Standalone apps |
+| [`toolchain/`](../toolchain/) | Build and metrics scripts | Dev tools |
+| [`plugins/`](../plugins/) | Bowerbird | Plug-in host |
 | [`integrations/`](../integrations/) | Assimp loader | Optional adapters |
 | [`wip/`](../wip/) | Domo | Work in progress |
