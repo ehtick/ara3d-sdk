@@ -10,7 +10,7 @@ namespace Ara3D.MemoryMappedFiles
             => new MemoryMappedView(self, offset, size);
 
         public static MemoryMappedView CreateSubView(this MemoryMappedView self, long offset, long size)
-            => new MemoryMappedView(self.File, self.Offset + offset, size);
+            => new MemoryMappedView(self.File, self.Offset + offset, size, self.Access);
 
         public static unsafe AlignedMemory ReadBytes(this MemoryMappedView self)
         {

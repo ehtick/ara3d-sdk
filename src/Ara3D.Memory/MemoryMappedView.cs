@@ -14,24 +14,30 @@ namespace Ara3D.Memory
         public MemoryMappedFile File { get; }
         public long Offset { get; }
         public long Size { get; }
+        public MemoryMappedFileAccess Access { get; }
         public MemoryMappedViewAccessor Accessor { get; }
 
-        public MemoryMappedView(MemoryMappedFile file, long offset, long size)
+        public MemoryMappedView(MemoryMappedFile file, long offset, long size,
+            MemoryMappedFileAccess access = MemoryMappedFileAccess.ReadWrite)
         {
             File = file;
             Offset = offset;
             Size = size;
-            Accessor = file.CreateViewAccessor(offset, size);
+            Access = access;
+            Accessor = file.CreateViewAccessor(offset, size, access);
         }
 
         public void Dispose()
             => Accessor.Dispose();
 
+        /// <summary>Maps the file read-only and shared for reading, so several readers of
+        /// one file, in this process or another, never lock each other out.</summary>
         public static void ReadFile(string filePath, Action<MemoryMappedView> action)
         {
-            var fi = new FileInfo(filePath);
-            using var mmf = MemoryMappedFile.CreateFromFile(filePath);
-            using var view = new MemoryMappedView(mmf, 0, fi.Length);
+            using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using var mmf = MemoryMappedFile.CreateFromFile(stream, null, 0,
+                MemoryMappedFileAccess.Read, HandleInheritability.None, leaveOpen: false);
+            using var view = new MemoryMappedView(mmf, 0, stream.Length, MemoryMappedFileAccess.Read);
             action(view);
         }
     }
